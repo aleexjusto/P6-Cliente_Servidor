@@ -46,3 +46,10 @@ Como observamos, no noso servidor chamado alexserver fixen o seguinte: empregamo
 No cliente, definimoslle una imaxe alpine, ademáis coas opciones 'tty' e 'stdin_open' permitimos que teña unha terminal, e finalemnte definimos a red DNS coa IP do servidor e definimos a IP fixa do cliente, neste caso 172.29.8.2.
 
 Finalemente, definin a red empregada, neste caso como tipo bridge, e fixen o seguinte: definin o rango de Ip en 172.29.8.0/26, cpa ip_range limite as IP asignables a un rango específico, neste caso 172.29.8.0/24; e por ultimo definin a IP gateway en 172.29.8.254. Se creo a rede desde a terminal, neste apartado poñería 'externa:true'.
+
+Agora que xa fixemos os documentos, necesitamos arrincar o servidor, co comando ` docker compose up -d `, o que nos permite iniciar o servidor pero tendo disponible a terminal. Agora necesitamos arrincar o cliente, que se fai co comando `docker exec -it cliente /bin/sh`, e xa entramos na terminal do cliente.
+
+Nesta terminal, necesitamos descargar dig, onde primeiro empreguei o comando `apk update`, empregamos apk porque estamos nunha imaxe alpine, e finalmente o comando `apk add --update bind-tools` para instalar o dig.
+
+Finalemente, co dig disponible, empregamos o comando `dig @172.29.8.1 ejemplo.asircastelao.inet`, onde no 2 pomos a IP do noso servidor, e podemos observar que todo funciona correctamente
+
